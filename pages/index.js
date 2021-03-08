@@ -26,13 +26,13 @@ const BlogHome = ({home, posts}) => {
     )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({res}) {
     const home = await client.getSingle('blog_home')
     const posts = await client.query(
         Prismic.Predicates.at('document.type', 'post'),
         {orderings: '[my.post.date desc]'}
     )
-
+    res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate')
     return {props: {home, posts}}
 }
 
