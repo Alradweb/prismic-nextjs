@@ -11,6 +11,7 @@ const BlogHome = ({home, posts}) => {
         <div>
             <img src={home.data.image.url} alt="avatar image"/>
             <h1>{RichText.asText(home.data.headline)}</h1>
+            <h2>TEST</h2>
             <p>{RichText.asText(home.data.description)}</p>
             <ul>
                 {posts.results.map((post) => (
